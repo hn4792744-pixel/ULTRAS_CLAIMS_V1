@@ -81,14 +81,6 @@ final class MapMenu extends Menu {
                 refresh();
             });
         }
-        if (selected != null && zoom == 1) {
-            Claim target = expandableFor(selected);
-            if (target != null) {
-                set(53, gui.button("expand-here", lang, "x", selected.x(), "z", selected.z()), c -> plugin.expansion().requestTarget(viewer, target, selected, false));
-            } else {
-                set(53, gui.button("expand-unavailable", lang, "x", selected.x(), "z", selected.z()));
-            }
-        }
     }
 
     private void move(int dx, int dz) {
@@ -196,7 +188,19 @@ final class MapMenu extends Menu {
         }
         Claim c = plugin.claims().at(world, x0, z0);
         if (c == null) {
-            selected = new ChunkPos(x0, z0);
+            ChunkPos target = new ChunkPos(x0, z0);
+            selected = target;
+            Claim owner = expandableFor(target);
+            if (owner != null) {
+                var chk = plugin.expansion().check(viewer, owner, target);
+                if (!chk.ok()) {
+                    plugin.expansion().explain(viewer, chk);
+                    refresh();
+                    return;
+                }
+                gui.openConfirmExpand(viewer, owner, target, this);
+                return;
+            }
             refresh();
         } else if (c.isOwner(viewer.getUniqueId()) || c.isMember(viewer.getUniqueId()) || plugin.hasBypass(viewer)) {
             gui.openSettings(viewer, c, x0 + ", " + z0, this);

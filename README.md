@@ -10,7 +10,6 @@ Premium, quiet design: a claim head, a clickable green “+” border, a compact
 2. Build: `gradle build` → `build/libs/Ultras_Claims_v1.jar`.
    Different API: `gradle build -PpaperApi=1.21.8-R0.1-SNAPSHOT -PjavaRelease=21`.
 3. Put the jar in `plugins/`, start the server, edit `plugins/Ultras_Claims_v1/config.yml`, then `/claim reload`.
-4. Optional icons: see *GUI*.
 
 ## Commands
 | Command | Description |
@@ -69,15 +68,20 @@ Heads: personalised, never stackable, duplicate-proof (each head carries a one-t
 
 ## GUI
 Click the head (left or right): Border, Members, Settings, Cabin, Map, Notifications, Info, Close. Every menu has Back; lists have Previous/Next, “Page x/y”, Search (type in chat, `cancel` aborts) and Filter. Menus are `InventoryHolder`s; every click, drag, shift-click, number key, double click and creative pick is cancelled.
-Custom icons: build/ship `resourcepack/Ultras_Claims_Icons.zip` (regenerate with `python3 tools/make_icons.py`), set `gui.use-resource-pack: true` and send the pack to players (server resource pack). Without it, plain paper icons with the same names are used. Map cells use coloured glass panes (state tiles, not buttons).
-Map menu: colours from `map.colors`, zoom ×1/×2/×4, previous/up/center/down/next, “you are here”, click an own/member chunk for its settings, click a free chunk to select it and expand next to your claim. Physical map: `/claim map`.
+Icons are normal Minecraft items (no resource pack needed); change them in `gui/layout.yml` under `icons:`. Map cells use coloured glass panes (state tiles, not buttons).
+Map menu: colours from `map.colors`, zoom ×1/×2/×4, previous/up/center/down/next, “you are here”, click an own/member chunk for its settings, click a free chunk next to your claim to open the confirm menu (Cancel returns to the map). Physical map: `/claim map`.
 
 ## Troubleshooting
 - *Plugin does not start*: check the console for the first red line; the database must be writable (`claims.db`).
-- *Icons look like paper*: `gui.use-resource-pack` is false or the pack is not applied. `pack.mcmeta` uses `pack_format 46`; adjust it for your client version.
 - *No economy*: install Vault plus an economy plugin, or choose `command`/`items`.
 - *A claim vanished*: with `head.verify-on-chunk-load` a claim whose head block was removed by an external tool is cleaned up; see `logs/claims.log` (`STALE_CLAIM_REMOVED`).
 - *Pre-launch checklist (not run here)*: place a head, expand with “+”, add a member and toggle a permission, deposit stone in the cabin, let a claim expire into grace and renew, break a head and re-place it, `/claim reload`, restart the server.
 
 ## Compatibility
 Written for Paper 26.2 and the 1.21.x API (`api-version: '1.21'`), Java 25. Not compatible with Spigot/CraftBukkit (Paper API, Adventure, Display entities). Optional: Vault.
+
+## Update notes
+- Border "+": one per outer face of every claimed chunk (none on inner/claimed faces; blocked faces are not clickable).
+- Map: clicking a free chunk next to your claim opens the Confirm menu; Cancel returns to the Map, no charge before Confirm.
+- GUI: vanilla materials as icons (no resource pack needed), small-caps names with calm ✓ ! × markers.
+- Chat prefix: `ULTRAS │` in normal capitals with a red gradient; message bodies stay small caps.

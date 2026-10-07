@@ -54,7 +54,7 @@ border:
   display-time: 30             # seconds; restarts when the claim is expanded
   show-only-to-owner: true     # members and admins can also see it; visitors cannot
   plus-color: GREEN            # name or #rrggbb
-  plus-size: 2.0               # 1.0 - 4.0
+  plus-size: 2.6               # 1.0 - 4.0 (one "+" per free outer face of every claim chunk)
   plus-offset-y: 1.2           # height above the player's feet (eye level)
   height-follow-player: true   # the "+" follows the player's height without being rebuilt
   glow: true
@@ -64,7 +64,7 @@ border:
   full-beam-enabled: false     # true = also draw the full wall around the claim
   beam-color: WHITE
   beam-height: 8
-  max-entities: 300            # safety cap per viewer
+  max-entities: 480            # safety cap per viewer (4 entities per "+", nearest ones first)
 plus:
   animation:
     enabled: true
@@ -182,9 +182,7 @@ notifications:
     visitor-left: false
 
 # ───────────────────────── Interface ─────────────────────────
-gui:
-  # false = plain paper icons (always works). true = custom icons from the bundled resource pack (see README).
-  use-resource-pack: false
+# Menu icons are normal Minecraft items (no resource pack). Change them in gui/layout.yml under "icons".
 
 map:
   colors:
@@ -224,19 +222,19 @@ logging:
 
 # ───────────────────────── Chat style ─────────────────────────
 prefix:
-  text: "ᴜʟᴛʀᴀs"
+  text: "ULTRAS"          # normal Minecraft font, red gradient
   separator: "│"
   gradient-start: "#ff5a4d"
   gradient-end: "#8b0000"
   separator-color: "#8a8a8a"
 
 colors:                        # <success> <error> <warning> <info> <muted> <text> <accent> <enabled> <disabled>
-  success: "#6fcf97"
-  error: "#eb5757"
-  warning: "#f2c94c"
-  info: "#7aa2f7"
+  success: "#7fc29b"
+  error: "#d96c6c"
+  warning: "#d9b26a"
+  info: "#8aa4d6"
   muted: "#8a8a8a"
   text: "#d8d8d8"
   accent: "#ff6b5a"
-  enabled: "#6fcf97"
-  disabled: "#eb5757"
+  enabled: "#7fc29b"
+  disabled: "#d96c6c"

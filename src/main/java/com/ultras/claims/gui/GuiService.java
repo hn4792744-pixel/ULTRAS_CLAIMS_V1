@@ -13,7 +13,6 @@ import com.ultras.claims.sound.SoundKey;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -34,14 +33,13 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-/** Opens menus and builds their items. Custom icons come from the (optional) resource pack, see README. */
+/** Opens menus and builds their items. Icons are vanilla items. */
 public final class GuiService {
     private record Prompt(Consumer<String> callback, long expiresAt) {
     }
 
     private final UltrasClaims plugin;
     private YamlConfiguration layout = new YamlConfiguration();
-    private boolean useModels;
     private ItemStack filler;
     private BukkitTask liveTask;
     private final Map<UUID, Prompt> prompts = new HashMap<>();
@@ -65,7 +63,6 @@ public final class GuiService {
         if (res != null) {
             layout.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(res, StandardCharsets.UTF_8)));
         }
-        useModels = plugin.getConfig().getBoolean("gui.use-resource-pack", false);
         ItemStack fl = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta m = fl.getItemMeta();
         m.displayName(Component.space());
@@ -93,15 +90,40 @@ public final class GuiService {
         return filler;
     }
 
+    /** Vanilla item per icon id. Overridable in gui/layout.yml under "icons:". */
+    private static final Map<String, Material> DEFAULT_ICONS = Map.ofEntries(
+            Map.entry("border", Material.LIME_STAINED_GLASS_PANE), Map.entry("members", Material.PLAYER_HEAD),
+            Map.entry("settings", Material.COMPARATOR), Map.entry("cabin", Material.CHEST), Map.entry("cabin-disabled", Material.GRAY_DYE),
+            Map.entry("map", Material.MAP), Map.entry("notifications", Material.BELL), Map.entry("info", Material.BOOK),
+            Map.entry("close", Material.BARRIER), Map.entry("back", Material.ARROW), Map.entry("confirm", Material.LIME_DYE),
+            Map.entry("cancel", Material.RED_DYE), Map.entry("next", Material.SPECTRAL_ARROW), Map.entry("previous", Material.SPECTRAL_ARROW),
+            Map.entry("add-member", Material.EMERALD), Map.entry("renew", Material.CLOCK), Map.entry("search", Material.SPYGLASS),
+            Map.entry("filter", Material.HOPPER), Map.entry("page", Material.PAPER), Map.entry("empty", Material.GRAY_STAINED_GLASS_PANE),
+            Map.entry("up", Material.ARROW), Map.entry("down", Material.ARROW), Map.entry("left", Material.ARROW), Map.entry("right", Material.ARROW),
+            Map.entry("center", Material.COMPASS), Map.entry("zoom-in", Material.SPYGLASS), Map.entry("zoom-out", Material.SPYGLASS),
+            Map.entry("expand-here", Material.EMERALD), Map.entry("expand-unavailable", Material.RED_STAINED_GLASS_PANE),
+            Map.entry("toggle-on", Material.LIME_DYE), Map.entry("toggle-off", Material.RED_DYE), Map.entry("option", Material.LIGHT_BLUE_DYE),
+            Map.entry("deposit", Material.HOPPER), Map.entry("clock", Material.CLOCK), Map.entry("membership", Material.NAME_TAG),
+            Map.entry("ps-sounds", Material.NOTE_BLOCK), Map.entry("ps-language", Material.WRITABLE_BOOK), Map.entry("ps-messages", Material.PAPER),
+            Map.entry("ps-entry", Material.OAK_DOOR), Map.entry("ps-invitations", Material.NAME_TAG), Map.entry("ps-membership", Material.NAME_TAG),
+            Map.entry("ps-notifications", Material.BELL), Map.entry("ps-reset", Material.REDSTONE));
+
+    private Material materialFor(String id) {
+        String configured = layout.getString("icons." + id);
+        Material m = configured == null ? null : Material.matchMaterial(configured);
+        return m != null ? m : DEFAULT_ICONS.getOrDefault(id, Material.PAPER);
+    }
+
+    /** A menu button: a normal vanilla item (no resource pack needed). */
     public ItemStack icon(String id, Component name, List<Component> lore) {
-        ItemStack it = new ItemStack(Material.PAPER);
+        ItemStack it = new ItemStack(materialFor(id));
         ItemMeta m = it.getItemMeta();
         m.displayName(name);
         if (!lore.isEmpty()) {
             m.lore(lore);
         }
-        if (useModels) {
-            m.setItemModel(new NamespacedKey("ultrasclaims", id));
+        if (id.equals("toggle-on")) {
+            m.setEnchantmentGlintOverride(true);
         }
         m.addItemFlags(ItemFlag.values());
         it.setItemMeta(m);
@@ -296,12 +318,19 @@ public final class GuiService {
     }
 
     public void openConfirmExpand(Player p, Claim c, ChunkPos target) {
+        openConfirmExpand(p, c, target, null);
+    }
+
+    public void openConfirmExpand(Player p, Claim c, ChunkPos target, Menu back) {
         String lang = plugin.messages().languageOf(p);
         List<Component> lore = new ArrayList<>(lore(lang, "gui.confirm-expand-lore", "x", target.x(), "z", target.z(),
                 "current", c.expansions(), "max", plugin.expansion().max()));
         lore.add(plugin.economy().cost(p));
         ConfirmMenu m = new ConfirmMenu(this, p, text(lang, "gui.title-confirm-expand"), lore, () -> plugin.expansion().requestTarget(p, c, target, true));
         m.claim = c;
+        if (back != null) {
+            m.back(() -> back);
+        }
         m.open();
     }
 

@@ -88,7 +88,7 @@ public final class EntryListener implements Listener {
         if (oldId != null) {
             Claim old = plugin.claims().get(oldId);
             if (old != null) {
-                if (announce) {
+                if (announce && newId == null) {
                     plugin.messages().positioned(p, "exit", MessageChannel.EXIT, "owner", old.ownerName(), "id", old.id());
                     plugin.sounds().play(p, SoundKey.EXIT);
                 }

@@ -332,7 +332,7 @@ public final class ProtectionListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onTeleport(PlayerTeleportEvent e) {
         PlayerTeleportEvent.TeleportCause cause = e.getCause();
-        if ((cause != PlayerTeleportEvent.TeleportCause.ENDER_PEARL && cause != PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT)
+        if ((cause != PlayerTeleportEvent.TeleportCause.ENDER_PEARL && cause != PlayerTeleportEvent.TeleportCause.CONSUMABLE_EFFECT)
                 || !plugin.getConfig().getBoolean("protection.block-teleport-into-claims", true) || e.getTo() == null) {
             return;
         }

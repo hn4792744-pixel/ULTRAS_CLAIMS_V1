@@ -9,3 +9,21 @@ main:
     notifications: 15
     info: 16
     close: 22
+
+# Item shown for each icon id (any Minecraft item name). Works without a resource pack.
+icons:
+  border: LIME_STAINED_GLASS_PANE
+  members: PLAYER_HEAD
+  settings: COMPARATOR
+  cabin: CHEST
+  map: MAP
+  notifications: BELL
+  info: BOOK
+  close: BARRIER
+  back: ARROW
+  confirm: LIME_DYE
+  cancel: RED_DYE
+  next: SPECTRAL_ARROW
+  previous: SPECTRAL_ARROW
+  toggle-on: LIME_DYE
+  toggle-off: RED_DYE

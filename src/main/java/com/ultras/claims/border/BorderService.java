@@ -41,6 +41,10 @@ public final class BorderService {
         final String claimId;
         final Direction dir;
         final boolean blocked;
+        /** The claim chunk that carries this "+" and the free chunk it would add. */
+        final ChunkPos source;
+        final ChunkPos target;
+        BlockDisplay plate;
         BlockDisplay vertical;
         BlockDisplay horizontal;
         Interaction hit;
@@ -48,10 +52,12 @@ public final class BorderService {
         double y;
         double z;
 
-        PlusUnit(String claimId, Direction dir, boolean blocked) {
+        PlusUnit(String claimId, Direction dir, boolean blocked, ChunkPos source, ChunkPos target) {
             this.claimId = claimId;
             this.dir = dir;
             this.blocked = blocked;
+            this.source = source;
+            this.target = target;
         }
     }
 
@@ -132,7 +138,7 @@ public final class BorderService {
         }
         Session s = new Session(viewer.getUniqueId(), viewer.getWorld().getName());
         s.expiresAt = System.currentTimeMillis() + plugin.getConfig().getLong("border.display-time", 30) * 1000L;
-        s.entityBudget = plugin.getConfig().getInt("border.max-entities", 300);
+        s.entityBudget = plugin.getConfig().getInt("border.max-entities", 480);
         sessions.put(viewer.getUniqueId(), s);
         for (Claim c : claims) {
             if (c.world().equals(s.world)) {
@@ -209,10 +215,29 @@ public final class BorderService {
         double yOffset = plugin.getConfig().getDouble("border.plus-offset-y", 1.2);
         double baseY = viewer.getLocation().getY();
         if (showPluses) {
-            for (Direction d : Direction.values()) {
-                ExpansionService.Check chk = exp.check(viewer, c, d);
-                boolean blocked = !chk.ok() && chk.problem() != ExpansionService.Problem.BUSY;
-                PlusUnit u = new PlusUnit(c.id(), d, blocked);
+            // Every outer face of every claim chunk gets its own "+" (not one per side of the whole claim).
+            List<PlusUnit> candidates = new ArrayList<>();
+            for (ChunkPos cp : c.chunks()) {
+                for (Direction d : Direction.values()) {
+                    ChunkPos n = cp.step(d);
+                    if (c.chunks().contains(n)) {
+                        continue; // inner face
+                    }
+                    ExpansionService.Check chk = exp.check(viewer, c, n);
+                    if (chk.problem() == ExpansionService.Problem.CHUNK_CLAIMED) {
+                        continue; // someone else's land: nothing to offer
+                    }
+                    boolean blocked = !chk.ok() && chk.problem() != ExpansionService.Problem.BUSY;
+                    candidates.add(new PlusUnit(c.id(), d, blocked, cp, n));
+                }
+            }
+            double vx = viewer.getLocation().getX();
+            double vz = viewer.getLocation().getZ();
+            candidates.sort(java.util.Comparator.comparingDouble(u -> {
+                double[] p = facePosition(u);
+                return (p[0] - vx) * (p[0] - vx) + (p[1] - vz) * (p[1] - vz);
+            }));
+            for (PlusUnit u : candidates) {
                 if (spawnPlus(viewer, s, c, u, baseY + yOffset)) {
                     view.pluses.add(u);
                 }
@@ -224,31 +249,13 @@ public final class BorderService {
     }
 
     private boolean spawnPlus(Player viewer, Session s, Claim c, PlusUnit u, double centerY) {
-        if (s.entityBudget < 3) {
+        if (s.entityBudget < 4) {
             return false;
         }
         World w = viewer.getWorld();
-        ChunkPos pc = Geometry.plusChunk(c.chunks(), u.dir, n -> plugin.claims().at(c.world(), n.x(), n.z()) == null);
-        double x;
-        double z;
-        switch (u.dir) {
-            case NORTH -> {
-                x = pc.minBlockX() + 8;
-                z = pc.minBlockZ() - 0.5;
-            }
-            case SOUTH -> {
-                x = pc.minBlockX() + 8;
-                z = pc.minBlockZ() + 16.5;
-            }
-            case WEST -> {
-                x = pc.minBlockX() - 0.5;
-                z = pc.minBlockZ() + 8;
-            }
-            default -> {
-                x = pc.minBlockX() + 16.5;
-                z = pc.minBlockZ() + 8;
-            }
-        }
+        double[] pos = facePosition(u);
+        double x = pos[0];
+        double z = pos[1];
         if (!w.isChunkLoaded((int) Math.floor(x) >> 4, (int) Math.floor(z) >> 4)) {
             return false;
         }
@@ -256,10 +263,11 @@ public final class BorderService {
         u.y = centerY;
         u.z = z;
         ColorSpec col = u.blocked ? ColorSpec.of(0x777777) : color("border.plus-color", "GREEN");
-        double size = Math.max(0.5, plugin.getConfig().getDouble("border.plus-size", 2.0));
+        double size = Math.max(0.5, plugin.getConfig().getDouble("border.plus-size", 2.6));
         float yaw = (u.dir == Direction.EAST || u.dir == Direction.WEST) ? 90f : 0f;
         Location at = new Location(w, x, centerY, z, yaw, 0f);
         boolean glow = plugin.getConfig().getBoolean("border.glow", true) && !u.blocked;
+        u.plate = spawn(viewer, s, at, BlockDisplay.class, d -> stylePlate(d, size));
         u.vertical = spawn(viewer, s, at, BlockDisplay.class, d -> styleBar(d, col, glow, size, true, 1f));
         u.horizontal = spawn(viewer, s, at, BlockDisplay.class, d -> styleBar(d, col, glow, size, false, 1f));
         Location hitAt = new Location(w, x, centerY - size / 2.0, z);
@@ -269,8 +277,28 @@ public final class BorderService {
             i.setResponsive(true);
         });
         byEntity.put(u.hit.getUniqueId(), u);
-        s.entityBudget -= 3;
+        s.entityBudget -= 4;
         return true;
+    }
+
+    /** Centre of the outer face of a claim chunk that a "+" sits on (x, z). */
+    private static double[] facePosition(PlusUnit u) {
+        ChunkPos pc = u.source;
+        return switch (u.dir) {
+            case NORTH -> new double[]{pc.minBlockX() + 8, pc.minBlockZ() - 0.5};
+            case SOUTH -> new double[]{pc.minBlockX() + 8, pc.minBlockZ() + 16.5};
+            case WEST -> new double[]{pc.minBlockX() - 0.5, pc.minBlockZ() + 8};
+            default -> new double[]{pc.minBlockX() + 16.5, pc.minBlockZ() + 8};
+        };
+    }
+
+    /** A thin dark plate behind the "+", so it stays readable against any background. */
+    private void stylePlate(BlockDisplay d, double size) {
+        d.setBlock(org.bukkit.Material.BLACK_CONCRETE.createBlockData());
+        d.setBrightness(new Display.Brightness(6, 6));
+        d.setViewRange(1.5f);
+        float side = (float) (size * 1.12);
+        d.setTransformation(new Transformation(new Vector3f(-side / 2f, -side / 2f, -0.11f), new AxisAngle4f(), new Vector3f(side, side, 0.05f), new AxisAngle4f()));
     }
 
     private void styleBar(BlockDisplay d, ColorSpec col, boolean glow, double size, boolean vertical, float factor) {
@@ -286,7 +314,7 @@ public final class BorderService {
     }
 
     private Transformation barTransform(double size, boolean vertical, float factor) {
-        float thick = (float) (size * 0.34);
+        float thick = (float) (size * 0.30);
         float len = (float) size;
         float depth = 0.12f;
         float sx = (vertical ? thick : len) * factor;
@@ -387,7 +415,7 @@ public final class BorderService {
         boolean pulse = plugin.getConfig().getBoolean("plus.animation.pulse", true) || plugin.getConfig().getBoolean("border.pulse", false);
         double speed = Math.max(0.2, plugin.getConfig().getDouble("plus.animation.speed", 1.0));
         double yOffset = plugin.getConfig().getDouble("border.plus-offset-y", 1.2);
-        double size = Math.max(0.5, plugin.getConfig().getDouble("border.plus-size", 2.0));
+        double size = Math.max(0.5, plugin.getConfig().getDouble("border.plus-size", 2.6));
         int cycle = Math.max(1, (int) Math.round(4 / speed));
         float factor = (tick / cycle) % 2 == 0 ? 1f : 1.1f;
         for (Iterator<Map.Entry<UUID, Session>> it = sessions.entrySet().iterator(); it.hasNext(); ) {
@@ -432,7 +460,7 @@ public final class BorderService {
 
     private void move(PlusUnit u, double newY, double size) {
         u.y = newY;
-        for (BlockDisplay d : new BlockDisplay[]{u.vertical, u.horizontal}) {
+        for (BlockDisplay d : new BlockDisplay[]{u.plate, u.vertical, u.horizontal}) {
             Location l = d.getLocation();
             l.setY(newY);
             d.teleport(l);
@@ -476,13 +504,13 @@ public final class BorderService {
             return;
         }
         if (u.blocked) {
-            ExpansionService.Check chk = plugin.expansion().check(p, c, u.dir);
+            ExpansionService.Check chk = plugin.expansion().check(p, c, u.target);
             if (!chk.ok()) {
                 plugin.expansion().explain(p, chk);
             }
             return;
         }
-        plugin.expansion().request(p, c, u.dir, false);
+        plugin.expansion().requestTarget(p, c, u.target, false);
     }
 
     private Entity findEntity(Session s, UUID id) {

@@ -179,8 +179,12 @@ public final class Messages {
 
     /** Renders a template line; ph is name, value, name, value... Values are plain text (never parsed as markup). */
     public Component line(String lang, String template, Object... ph) {
+        return build(lang, template, Boolean.TRUE.equals(smallCaps.get(lang)), ph);
+    }
+
+    private Component build(String lang, String template, boolean caps, Object... ph) {
         String t = template;
-        if (Boolean.TRUE.equals(smallCaps.get(lang))) {
+        if (caps) {
             t = SmallCaps.convertTemplate(t);
         }
         TagResolver.Builder rb = TagResolver.builder().resolver(tags).resolver(Placeholder.component("prefix", prefix));
@@ -210,9 +214,9 @@ public final class Messages {
         return line(lang, lines(lang, key).get(0), ph);
     }
 
-    /** GUI text: no italics, never inherits the prefix. */
+    /** GUI text (same small-caps style as chat for English): no italics, never inherits the prefix. */
     public Component gui(String lang, String key, Object... ph) {
-        return first(lang, key, ph).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE);
+        return line(lang, lines(lang, key).get(0), ph).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE);
     }
 
     public List<Component> guiLore(String lang, String key, Object... ph) {
@@ -228,7 +232,7 @@ public final class Messages {
     }
 
     public String plain(String lang, String key, Object... ph) {
-        return net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText().serialize(first(lang, key, ph));
+        return net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText().serialize(key.startsWith("gui.") ? gui(lang, key, ph) : first(lang, key, ph));
     }
 
     // ------------------------------------------------------------------ sending
