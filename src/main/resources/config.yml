@@ -1,0 +1,242 @@
+# ═════════════════════════════════════════════════════════════
+#  Ultras_Claims_v1  -  config.yml
+#  Author: UC_Hussein
+#  Reload with /claim reload (the database is never reloaded).
+# ═════════════════════════════════════════════════════════════
+
+language:
+  default: en            # en | ar   (each player can choose their own with /claim_setting)
+
+# Worlds where claim heads cannot be placed.
+disabled-worlds: []
+
+limits:
+  max-heads: 2                 # claim heads a player can get with /claim (0 = nobody can)
+  max-claims-owned: 2          # claims one player can own at the same time
+  max-members-per-claim: 4
+  max-claims-member-of: 4      # a player can be a member of this many different claims
+  max-expansion-per-claim: 100 # +1 chunk per expansion
+
+head:
+  break-requires-sneak: true   # sneak + left click to break a head (prevents accidents)
+  verify-on-chunk-load: true   # remove a claim whose head block was removed by an external tool
+
+# ───────────────────────── Expansion ─────────────────────────
+expansion:
+  require-confirmation: false  # true = a confirmation menu (with the cost) before every expansion
+  click-cooldown-ms: 400
+
+# ───────────────────────── Economy ─────────────────────────
+economy:
+  enabled: true
+  type: vault                  # vault | command | items
+  expansion-cost: 5000         # vault price per expansion
+  currency: USD
+  symbol: "$"
+  admin-bypass-cost: false     # true = players with ultrasclaims.admin.bypass expand for free
+  uc:                          # "command" type (e.g. a UC economy plugin)
+    enabled: false
+    expansion-cost: 5000
+    check-command: "uc balance {player}"
+    take-command: "uc take {player} {amount}"
+    refund-command: "uc give {player} {amount}"
+    balance-regex: "([0-9][0-9,.]*)"
+    cost-format: "{amount} UC"
+    verify-after-take: true
+    check-wait-ticks: 4
+  items:                       # "items" type
+    material: DIAMOND
+    amount: 5
+
+# ───────────────────────── Border ─────────────────────────
+border:
+  enabled: true
+  display-time: 30             # seconds; restarts when the claim is expanded
+  show-only-to-owner: true     # members and admins can also see it; visitors cannot
+  plus-color: GREEN            # name or #rrggbb
+  plus-size: 2.0               # 1.0 - 4.0
+  plus-offset-y: 1.2           # height above the player's feet (eye level)
+  height-follow-player: true   # the "+" follows the player's height without being rebuilt
+  glow: true
+  pulse: false
+  click-left: true
+  click-right: true
+  full-beam-enabled: false     # true = also draw the full wall around the claim
+  beam-color: WHITE
+  beam-height: 8
+  max-entities: 300            # safety cap per viewer
+plus:
+  animation:
+    enabled: true
+    pulse: true
+    speed: 1.0
+
+# ───────────────────────── Cabin ─────────────────────────
+cabin:
+  enabled: true                # false = no button, no timers, no messages, claims never expire
+  initial-time: 1d             # protection a new claim starts with
+  max-time: 30d                # protection can never exceed this
+  require-confirmation: false  # true = a Confirm button instead of automatic processing
+  process-delay-seconds: 10
+  warning:
+    start-minutes: 60          # first warning when this much time is left
+    interval-minutes: 10       # then every 10 minutes (never more often)
+  # item: minimum = items needed per step, time = protection added per step (30s, 5m, 2h, 1d ...)
+  items:
+    STONE: {minimum: 1, time: 3s}
+    COBBLESTONE: {minimum: 1, time: 3s}
+    DEEPSLATE: {minimum: 1, time: 4s}
+    COBBLED_DEEPSLATE: {minimum: 1, time: 4s}
+    COAL_ORE: {minimum: 1, time: 5s}
+    DEEPSLATE_COAL_ORE: {minimum: 1, time: 6s}
+    COPPER_ORE: {minimum: 1, time: 6s}
+    IRON_ORE: {minimum: 1, time: 8s}
+    DEEPSLATE_IRON_ORE: {minimum: 1, time: 9s}
+    GOLD_ORE: {minimum: 1, time: 12s}
+    DEEPSLATE_GOLD_ORE: {minimum: 1, time: 13s}
+    LAPIS_ORE: {minimum: 1, time: 10s}
+    REDSTONE_ORE: {minimum: 1, time: 10s}
+    EMERALD_ORE: {minimum: 1, time: 25s}
+    DIAMOND_ORE: {minimum: 1, time: 30s}
+    DEEPSLATE_DIAMOND_ORE: {minimum: 1, time: 32s}
+    OAK_LOG: {minimum: 1, time: 4s}
+    SPRUCE_LOG: {minimum: 1, time: 4s}
+    BIRCH_LOG: {minimum: 1, time: 4s}
+    JUNGLE_LOG: {minimum: 1, time: 4s}
+    ACACIA_LOG: {minimum: 1, time: 4s}
+    DARK_OAK_LOG: {minimum: 1, time: 4s}
+    MANGROVE_LOG: {minimum: 1, time: 4s}
+    CHERRY_LOG: {minimum: 1, time: 4s}
+
+renew:
+  enabled: true                # admin renewal (cabin menu button and /claim admin renew)
+  manual-time: 60              # minutes added by one manual renewal
+
+expiry:
+  grace-minutes: 30            # after protection ends only the old owner can renew
+  archive: true                # keep removed claims in the database (flag archived) instead of deleting rows
+
+# ───────────────────────── Protection ─────────────────────────
+protection:
+  block-teleport-into-claims: true   # ender pearl / chorus fruit into a protected claim by outsiders
+  # Defaults for NEW claims. true = visitors are blocked.
+  defaults:
+    pvp: true
+    block-break: true
+    block-place: true
+    bucket: true
+    container: true
+    chest: true
+    barrel: true
+    hopper: true
+    door: false
+    trapdoor: false
+    fence-gate: false
+    button: false
+    lever: false
+    redstone: false
+    pistons: true
+    item-pickup: false
+    item-drop: false
+    mob-damage: true
+    animal-damage: true
+    villager-interaction: true
+    vehicle: true
+    fishing: false
+    fire: true
+    lava: true
+    water: true
+    explosions: true
+    tnt: true
+    creeper: true
+    enderman-grief: true
+    crop-trample: true
+
+members:
+  # Permissions a new member starts with. Build / break / containers / manage-members / break-head are OFF by default.
+  default-permissions:
+    - use-claim
+    - doors
+    - buttons
+    - levers
+    - redstone
+    - animals
+    - villagers
+    - pickup
+    - drop
+    - teleport
+    - expand
+
+notifications:
+  defaults:                    # per claim; the owner changes them in the claim's Notifications menu
+    cabin-warning: true
+    cabin-empty: true
+    cabin-renewed: true
+    member-joined: true
+    member-left: true
+    claim-expanded: true
+    claim-expired: true
+    claim-renewed: true
+    head-broken: true
+    visitor-entered: true
+    visitor-left: false
+
+# ───────────────────────── Interface ─────────────────────────
+gui:
+  # false = plain paper icons (always works). true = custom icons from the bundled resource pack (see README).
+  use-resource-pack: false
+
+map:
+  colors:
+    own-head: DARK_GREEN
+    own: GREEN
+    member: BLUE
+    enemy: RED
+    free: GRAY
+    selected: WHITE
+
+wand:
+  radius-chunks: 3
+
+hologram:
+  enabled: false               # small text above the head (owner + remaining time)
+  height: 1.35
+  update-seconds: 30
+
+# ───────────────────────── Sounds (quiet) ─────────────────────────
+sounds:
+  success:     {enabled: true, sound: ENTITY_EXPERIENCE_ORB_PICKUP, volume: 0.25, pitch: 1.4}
+  error:       {enabled: true, sound: BLOCK_NOTE_BLOCK_BASS, volume: 0.3, pitch: 0.7}
+  expansion:   {enabled: true, sound: BLOCK_AMETHYST_BLOCK_CHIME, volume: 0.4, pitch: 1.0}
+  warning:     {enabled: true, sound: BLOCK_NOTE_BLOCK_BELL, volume: 0.3, pitch: 0.8}
+  gui-open:    {enabled: true, sound: UI_BUTTON_CLICK, volume: 0.2, pitch: 1.2}
+  gui-click:   {enabled: true, sound: UI_BUTTON_CLICK, volume: 0.15, pitch: 1.0}
+  toggle:      {enabled: true, sound: BLOCK_COMPARATOR_CLICK, volume: 0.3, pitch: 1.0}
+  enter:       {enabled: true, sound: BLOCK_AMETHYST_BLOCK_RESONATE, volume: 0.2, pitch: 1.2}
+  exit:        {enabled: true, sound: BLOCK_AMETHYST_BLOCK_RESONATE, volume: 0.2, pitch: 0.8}
+  add-member:  {enabled: true, sound: ENTITY_EXPERIENCE_ORB_PICKUP, volume: 0.25, pitch: 1.6}
+  remove-member: {enabled: true, sound: BLOCK_NOTE_BLOCK_BASS, volume: 0.25, pitch: 0.9}
+  renewal:     {enabled: true, sound: BLOCK_AMETHYST_BLOCK_CHIME, volume: 0.4, pitch: 1.3}
+
+logging:
+  enabled: true
+  file: logs/claims.log
+
+# ───────────────────────── Chat style ─────────────────────────
+prefix:
+  text: "ᴜʟᴛʀᴀs"
+  separator: "│"
+  gradient-start: "#ff5a4d"
+  gradient-end: "#8b0000"
+  separator-color: "#8a8a8a"
+
+colors:                        # <success> <error> <warning> <info> <muted> <text> <accent> <enabled> <disabled>
+  success: "#6fcf97"
+  error: "#eb5757"
+  warning: "#f2c94c"
+  info: "#7aa2f7"
+  muted: "#8a8a8a"
+  text: "#d8d8d8"
+  accent: "#ff6b5a"
+  enabled: "#6fcf97"
+  disabled: "#eb5757"

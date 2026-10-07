@@ -1,0 +1,517 @@
+# Ultras_Claims_v1 - English messages. Placeholders: %name%. Colour tags come from config.yml colors:.
+meta:
+  name: English
+  small-caps: true
+file-version: 1
+usage: "<prefix> <muted>• <text>Usage: <accent>%usage%"
+no-permission: "<prefix> <error>× You do not have permission"
+players-only: "<prefix> <error>× Only players can use this"
+reloaded: "<prefix> <success>✓ Configuration reloaded"
+player-offline: "<prefix> <error>× Player %player% is not online"
+claim-not-found: "<prefix> <error>× No claim with id %id%"
+claim-not-found-here: "<prefix> <error>× There is no claim here"
+claim-gone: "<prefix> <error>× This claim no longer exists"
+claim-no-access: "<prefix> <error>× This claim belongs to %owner%"
+world-disabled: "<prefix> <error>× Claims are disabled in this world"
+gui-no-permission: "<prefix> <error>× You are not allowed to do that"
+gui-search-prompt: "<prefix> <muted>• <text>Type a name in chat, or <accent>cancel"
+protect-denied: "<prefix> <error>× This land is protected"
+head-given: "<prefix> <success>✓ Claim head received <muted>(%count% / %max%)"
+head-given-admin: "<prefix> <success>✓ You received a claim head"
+head-cannot-obtain: "<prefix> <error>× You cannot obtain a claim head"
+head-limit: "<prefix> <error>× You already received your %max% claim heads"
+head-not-yours: "<prefix> <error>× This claim head belongs to another player"
+head-invalid: "<prefix> <error>× This claim head is not valid"
+head-chunk-claimed: "<prefix> <error>× This chunk is already claimed by %owner%"
+head-limit-owned: "<prefix> <error>× You can only own %max% claims"
+head-break-denied: "<prefix> <error>× Only the owner can break this head"
+head-break-sneak: "<prefix> <warning>! Sneak and break to remove the claim head"
+head-broken: "<prefix> <success>✓ Claim %id% removed"
+claim-created: "<prefix> <success>✓ Claim created <muted>(%id%)"
+border-shown: "<prefix> <muted>• <text>Border visible for %seconds%s"
+expand-success:
+- "<prefix> <success>✓ Claim expanded"
+- "<prefix> <muted>• <text>Progress: %current% / %max%"
+expand-not-allowed: "<prefix> <error>× You cannot expand this claim"
+expand-grace: "<prefix> <error>× Renew the claim before expanding"
+expand-max: "<prefix> <error>× Maximum expansion reached (%max%)"
+expand-chunk-claimed: "<prefix> <error>× This chunk belongs to %owner%"
+expand-outside-border: "<prefix> <error>× This chunk is outside the world border"
+expand-busy: "<prefix> <error>× Another expansion is in progress"
+expand-refunded: "<prefix> <error>× Expansion cancelled, you were refunded"
+economy-insufficient: "<prefix> <error>× Insufficient funds"
+economy-unavailable: "<prefix> <error>× Economy is not available"
+member-added: "<prefix> <success>✓ %player% added <muted>(max %max%)"
+member-removed: "<prefix> <success>✓ %player% removed"
+member-left: "<prefix> <success>✓ You left the claim of %owner%"
+member-full: "<prefix> <error>× This claim has the maximum number of members"
+member-target-full: "<prefix> <error>× That player is a member of too many claims"
+member-invites-disabled: "<prefix> <error>× Player disabled claim invitations"
+member-already: "<prefix> <error>× %player% is already a member"
+member-self: "<prefix> <error>× You are the owner"
+member-owner: "<prefix> <error>× %player% is the owner"
+member-unknown: "<prefix> <error>× Unknown player"
+member-you-were-added: "<prefix> <muted>• <text>You were added to the claim of %owner%"
+member-you-were-removed: "<prefix> <muted>• <text>You were removed from the claim of %owner%"
+cabin-disabled: "<prefix> <error>× The cabin is disabled"
+cabin-not-accepted: "<prefix> <error>× This item is not accepted"
+cabin-deposited: "<prefix> <muted>• <text>Deposited %amount% × %item% <muted>(processing in %delay%s)"
+cabin-withdrawn: "<prefix> <muted>• <text>Returned %amount% × %item%"
+cabin-processed:
+- "<prefix> <success>✓ Protection extended by %time%"
+- "<prefix> <muted>• <text>Remaining: %remaining%"
+cabin-nothing: "<prefix> <error>× Not enough items to add time"
+cabin-full: "<prefix> <error>× The cabin is full (maximum %max%)"
+cabin-grace-owner-only: "<prefix> <error>× Only the previous owner can renew now"
+cabin-items-returned: "<prefix> <muted>• <text>Your cabin items were returned"
+notify-cabin-warning: "<prefix> <warning>! Claim protection expires in %time%"
+notify-cabin-empty: "<prefix> <warning>! The cabin is empty"
+notify-cabin-renewed: "<prefix> <success>✓ Protection renewed <muted>(%time%)"
+notify-claim-expired: "<prefix> <warning>! Claim %id% expired - renew within %minutes%m"
+notify-claim-renewed: "<prefix> <success>✓ Claim renewed"
+notify-head-expired: "<prefix> <warning>! Claim %id% was removed"
+notify-head-broken: "<prefix> <warning>! %player% broke the head of claim %id%"
+notify-expanded: "<prefix> <success>✓ %player% expanded the claim <muted>(%current% / %max%)"
+notify-member-joined: "<prefix> <muted>• <text>%player% joined the claim"
+notify-member-left: "<prefix> <muted>• <text>%player% left the claim"
+notify-visitor-entered: "<prefix> <muted>• <text>%player% entered your claim"
+notify-visitor-left: "<prefix> <muted>• <text>%player% left your claim"
+entry-own: "<muted>Your claim <text>%id%"
+entry-member: "<muted>Claim of <text>%owner%"
+entry-visitor: "<muted>Claim of <text>%owner%"
+entry-grace: "<warning>Your claim needs renewal"
+exit: "<muted>Leaving claim"
+list-empty: "<prefix> <muted>• <text>You have no claims"
+list-header: "<prefix> <muted>• <text>Claims <muted>(%count%)"
+list-more: "<prefix> <muted>• <text>... and %count% more"
+list-entry: "<muted>  %id% <text>%owner% <muted>· %chunks% chunks · %world% %x% %y% %z% · %time%"
+info-lines:
+- "<prefix> <muted>• <text>Claim <accent>%id%"
+- "<muted>  Owner <text>%owner% <muted>· %state%"
+- "<muted>  Chunks <text>%chunks% <muted>· Expansion <text>%expansions%/%max%"
+- "<muted>  Members <text>%members%/%maxmembers% <muted>· Protection <text>%time%"
+info-visitor: "<prefix> <muted>• <text>This claim belongs to %owner%"
+tp-denied: "<prefix> <error>× You cannot teleport to this claim"
+tp-done: "<prefix> <success>✓ Teleported to claim %id%"
+wand-given: "<prefix> <success>✓ Claim wand received"
+wand-none: "<prefix> <muted>• <text>No claims nearby"
+wand-shown: "<prefix> <muted>• <text>Showing %count% nearby claims"
+map-given: "<prefix> <success>✓ Claim map received"
+map-enemy-claim: "<prefix> <muted>• <text>This chunk belongs to %owner%"
+admin-head-given: "<prefix> <success>✓ Claim head given to %player%"
+admin-removed: "<prefix> <success>✓ Claim %id% removed"
+admin-reset: "<prefix> <success>✓ Head allowance of %player% reset"
+settings-reset: "<prefix> <success>✓ Your settings were reset"
+item-head-name: "<accent>Claim Head"
+item-head-lore:
+- "<muted>Owner: <text>%owner%"
+- "<muted>Place it to claim the chunk"
+item-wand-name: "<accent>Claim Wand"
+item-wand-lore:
+- "<muted>Right click to see nearby borders"
+item-map-name: "<accent>Claim Map"
+item-map-lore:
+- "<muted>Shows claims around you"
+- "<muted>Sneak + right click for the menu"
+hologram:
+- "<accent>%owner%"
+- "<muted>%time%"
+hologram-grace:
+- "<warning>%owner%"
+- "<warning>renewal required"
+gui:
+  border: "<text>Border"
+  border-lore:
+  - "<muted>Show the claim border"
+  - "<muted>Click a + to expand"
+  members: "<text>Members"
+  members-lore:
+  - "<muted>Manage who can use this claim"
+  settings: "<text>Settings"
+  settings-lore:
+  - "<muted>Protection for visitors"
+  cabin: "<text>Cabin"
+  cabin-lore:
+  - "<muted>Add protection time"
+  cabin-disabled: "<text>Cabin"
+  cabin-disabled-lore:
+  - "<muted>Disabled on this server"
+  map: "<text>Map"
+  map-lore:
+  - "<muted>See the chunks around you"
+  notifications: "<text>Notifications"
+  notifications-lore:
+  - "<muted>Choose what you are told"
+  info: "<text>Info"
+  info-lore:
+  - "<muted>Owner: <text>%owner%"
+  - "<muted>Name: <text>%name%"
+  - "<muted>Chunks: <text>%chunks%"
+  - "<muted>Expansion: <text>%expansions% / %max%"
+  - "<muted>Members: <text>%members% / %maxmembers%"
+  - "<muted>State: <text>%state%"
+  - "<muted>Protection: <text>%remaining%"
+  - ""
+  - "<muted>Created: <text>%created%"
+  - "<muted>Renewed: <text>%renewed%"
+  - "<muted>Head: <text>%world% %x% %y% %z%"
+  close: "<text>Close"
+  back: "<text>Back"
+  confirm: "<text>Confirm"
+  cancel: "<text>Cancel"
+  next: "<text>Next"
+  previous: "<text>Previous"
+  add-member: "<text>Add member"
+  add-member-lore:
+  - "<muted>Pick a player"
+  renew: "<text>Renew"
+  renew-lore:
+  - "<muted>Admin: add %time%"
+  page: "<muted>Page <text>%page% <muted>/ <text>%pages%"
+  search: "<text>Search"
+  search-lore:
+  - "<muted>Current: <text>%query%"
+  - "<muted>Click to type, right click to clear"
+  filter: "<text>Filter"
+  filter-lore:
+  - "<muted>Showing: <text>%filter%"
+  - "<muted>Click for the next filter"
+  empty: "<muted>Nothing here"
+  up: "<text>Up"
+  down: "<text>Down"
+  left: "<text>Previous"
+  right: "<text>Next"
+  center: "<text>Center"
+  zoom-in: "<text>Zoom in"
+  zoom-out: "<text>Zoom out"
+  zoom-in-lore:
+  - "<muted>%zoom% chunk(s) per cell"
+  zoom-out-lore:
+  - "<muted>%zoom% chunk(s) per cell"
+  expand-here: "<text>Expand here"
+  expand-here-lore:
+  - "<muted>Chunk %x%, %z%"
+  expand-unavailable: "<muted>Cannot expand here"
+  expand-unavailable-lore:
+  - "<muted>Pick a free chunk next to your claim"
+  title-claim: "<muted>Claim <text>%id%"
+  title-info: "<muted>Info <text>%id%"
+  title-members: "<muted>Members <text>%count%/%max%"
+  title-picker: "<muted>Add member"
+  title-permissions: "<muted>Permissions <text>%player%"
+  title-settings: "<muted>Settings <text>%id%"
+  title-chunk-settings: "<muted>Chunk <text>%chunk%"
+  title-notifications: "<muted>Notifications"
+  title-cabin: "<muted>Cabin <text>%id%"
+  title-map: "<muted>Map <text>%x%, %z%"
+  title-confirm-expand: "<muted>Confirm expansion"
+  title-remove-member: "<muted>Remove %player%"
+  title-player-settings: "<muted>Your settings"
+  title-sounds: "<muted>Sounds"
+  title-messages: "<muted>Messages"
+  title-entry: "<muted>Entry and exit"
+  title-language: "<muted>Language"
+  title-membership: "<muted>Membership <text>%count%/%max%"
+  title-leave: "<muted>Leave claim %id%"
+  title-reset: "<muted>Reset settings"
+  state-on: "<enabled>● ON"
+  state-off: "<disabled>● OFF"
+  state-selected: "<enabled>Selected"
+  sensitive: "<warning>Sensitive permission"
+  click-to-toggle: "<muted>Click to switch"
+  click-to-change: "<muted>Click to change"
+  click-to-select: "<muted>Click to select"
+  online: online
+  offline: offline
+  claim-state-active: active
+  claim-state-grace: grace period
+  flag-blocked: "<enabled>Visitors blocked"
+  flag-allowed: "<disabled>Visitors allowed"
+  info-name: "<text>Claim %id%"
+  member-lore:
+  - "<muted>Status: <text>%status%"
+  - "<muted>Permissions: <text>%permissions%"
+  - "<muted>Since: <text>%since%"
+  - ""
+  - "<muted>Click: permissions"
+  - "<muted>Right click: remove"
+  picker-lore:
+  - "<muted>Status: <text>%status%"
+  - ""
+  - "<muted>Click to add"
+  remove-member-lore:
+  - "<muted>%player% will lose access"
+  leave-lore:
+  - "<muted>You will lose access to the claim of %owner%"
+  reset-lore:
+  - "<muted>All your personal settings return to default"
+  confirm-expand-lore:
+  - "<muted>Chunk %x%, %z%"
+  - "<muted>Expansion: <text>%current% / %max%"
+  cabin-info: "<text>Cabin"
+  cabin-info-lore:
+  - "<muted>Remaining: <text>%remaining%"
+  - "<muted>Maximum: <text>%max%"
+  - "<muted>State: <text>%state%"
+  - ""
+  - "<muted>Accepted items:"
+  cabin-rule: "<muted>  %item% <text>×%minimum% <muted>→ <text>+%time%"
+  cabin-more: "<muted>  ... and %count% more"
+  cabin-deposit: "<text>%item% ×%amount%"
+  cabin-deposit-lore:
+  - "<muted>Click to take back"
+  cabin-empty: "<text>Nothing deposited"
+  cabin-empty-lore:
+  - "<muted>Click an accepted item in your inventory"
+  - "<muted>to hand it in"
+  cabin-time: "<text>Remaining: %remaining%"
+  cabin-time-lore:
+  - "<muted>Items are processed after a short delay"
+  map-own-head: "<enabled>Your claim head"
+  map-own: "<enabled>Your claim"
+  map-member: "<info>Member claim"
+  map-enemy: "<disabled>Claimed"
+  map-free: "<muted>Unclaimed"
+  map-here: " <text>◆ you are here"
+  map-coords: "<muted>Chunk %x%, %z%"
+  map-owner: "<muted>Owner: <text>%owner% <muted>(%id%)"
+  map-click-settings: "<muted>Click for chunk settings"
+  map-click-select: "<muted>Click to select"
+  map-click-zoom: "<muted>Click to zoom in"
+  filter-name:
+    all: All
+    online: Online
+    offline: Offline
+    combat: Combat
+    building: Building
+    containers: Containers
+    redstone: Redstone
+    entities: Entities
+    world: World
+  perm:
+    use-claim: "<text>Use claim"
+    use-claim-lore:
+    - "<muted>Open the cabin and use claim features"
+    build: "<text>Build"
+    build-lore:
+    - "<muted>Place blocks"
+    break: "<text>Break"
+    break-lore:
+    - "<muted>Break blocks"
+    containers: "<text>Containers"
+    containers-lore:
+    - "<muted>Chests, barrels, furnaces, hoppers"
+    doors: "<text>Doors"
+    doors-lore:
+    - "<muted>Doors, trapdoors, gates"
+    buttons: "<text>Buttons"
+    buttons-lore:
+    - "<muted>Use buttons"
+    levers: "<text>Levers"
+    levers-lore:
+    - "<muted>Use levers"
+    redstone: "<text>Redstone"
+    redstone-lore:
+    - "<muted>Plates, repeaters, comparators"
+    animals: "<text>Animals"
+    animals-lore:
+    - "<muted>Animals and mobs"
+    villagers: "<text>Villagers"
+    villagers-lore:
+    - "<muted>Trade and interact"
+    pickup: "<text>Pickup"
+    pickup-lore:
+    - "<muted>Pick up items"
+    drop: "<text>Drop"
+    drop-lore:
+    - "<muted>Drop items"
+    teleport: "<text>Teleport"
+    teleport-lore:
+    - "<muted>Teleport to and into the claim"
+    expand: "<text>Expand"
+    expand-lore:
+    - "<muted>Expand the claim"
+    manage-members: "<text>Manage members"
+    manage-members-lore:
+    - "<muted>Add and remove members"
+    break-head: "<text>Break head"
+    break-head-lore:
+    - "<muted>Remove the claim head"
+  notif:
+    cabin-warning: "<text>Cabin warning"
+    cabin-warning-lore:
+    - "<muted>Protection is about to expire"
+    cabin-empty: "<text>Cabin empty"
+    cabin-empty-lore:
+    - "<muted>Protection ran out"
+    cabin-renewed: "<text>Cabin renewed"
+    cabin-renewed-lore:
+    - "<muted>Time was added"
+    member-joined: "<text>Member joined"
+    member-joined-lore:
+    - "<muted>Someone was added"
+    member-left: "<text>Member left"
+    member-left-lore:
+    - "<muted>Someone was removed or left"
+    claim-expanded: "<text>Claim expanded"
+    claim-expanded-lore:
+    - "<muted>A chunk was added"
+    claim-expired: "<text>Claim expired"
+    claim-expired-lore:
+    - "<muted>Grace period started"
+    claim-renewed: "<text>Claim renewed"
+    claim-renewed-lore:
+    - "<muted>Renewed after expiry"
+    head-broken: "<text>Head broken"
+    head-broken-lore:
+    - "<muted>The head was removed"
+    visitor-entered: "<text>Visitor entered"
+    visitor-entered-lore:
+    - "<muted>Someone entered the claim"
+    visitor-left: "<text>Visitor left"
+    visitor-left-lore:
+    - "<muted>Someone left the claim"
+  flag:
+    pvp: "<text>PvP"
+    pvp-lore:
+    - "<muted>Fighting players"
+    block-break: "<text>Block break"
+    block-break-lore:
+    - "<muted>Breaking blocks"
+    block-place: "<text>Block place"
+    block-place-lore:
+    - "<muted>Placing blocks"
+    bucket: "<text>Buckets"
+    bucket-lore:
+    - "<muted>Using buckets"
+    container: "<text>Containers"
+    container-lore:
+    - "<muted>Furnaces, shulkers and other storage"
+    chest: "<text>Chests"
+    chest-lore:
+    - "<muted>Opening chests"
+    barrel: "<text>Barrels"
+    barrel-lore:
+    - "<muted>Opening barrels"
+    hopper: "<text>Hoppers"
+    hopper-lore:
+    - "<muted>Hoppers and item transfer across the border"
+    door: "<text>Doors"
+    door-lore:
+    - "<muted>Using doors"
+    trapdoor: "<text>Trapdoors"
+    trapdoor-lore:
+    - "<muted>Using trapdoors"
+    fence-gate: "<text>Fence gates"
+    fence-gate-lore:
+    - "<muted>Using gates"
+    button: "<text>Buttons"
+    button-lore:
+    - "<muted>Using buttons"
+    lever: "<text>Levers"
+    lever-lore:
+    - "<muted>Using levers"
+    redstone: "<text>Redstone"
+    redstone-lore:
+    - "<muted>Plates, repeaters and similar"
+    pistons: "<text>Pistons"
+    pistons-lore:
+    - "<muted>Pistons pushing across the border"
+    item-pickup: "<text>Item pickup"
+    item-pickup-lore:
+    - "<muted>Picking up items"
+    item-drop: "<text>Item drop"
+    item-drop-lore:
+    - "<muted>Dropping items"
+    mob-damage: "<text>Mob damage"
+    mob-damage-lore:
+    - "<muted>Hurting mobs"
+    animal-damage: "<text>Animal damage"
+    animal-damage-lore:
+    - "<muted>Hurting animals"
+    villager-interaction: "<text>Villagers"
+    villager-interaction-lore:
+    - "<muted>Trading and hurting villagers"
+    vehicle: "<text>Vehicles"
+    vehicle-lore:
+    - "<muted>Boats and minecarts"
+    fishing: "<text>Fishing"
+    fishing-lore:
+    - "<muted>Casting a fishing rod"
+    fire: "<text>Fire"
+    fire-lore:
+    - "<muted>Fire and ignition"
+    lava: "<text>Lava"
+    lava-lore:
+    - "<muted>Lava flowing in"
+    water: "<text>Water"
+    water-lore:
+    - "<muted>Water flowing in"
+    explosions: "<text>Explosions"
+    explosions-lore:
+    - "<muted>All explosions"
+    tnt: "<text>TNT"
+    tnt-lore:
+    - "<muted>TNT and explosive carts"
+    creeper: "<text>Creepers"
+    creeper-lore:
+    - "<muted>Creeper explosions"
+    enderman-grief: "<text>Enderman grief"
+    enderman-grief-lore:
+    - "<muted>Endermen moving blocks"
+    crop-trample: "<text>Crop trample"
+    crop-trample-lore:
+    - "<muted>Trampling farmland"
+  ps-notifications: "<text>Claim notifications"
+  ps-notifications-lore:
+  - "<muted>Receive notifications from your claims"
+  ps-sounds: "<text>Sounds"
+  ps-sounds-lore:
+  - "<muted>Which sounds you hear"
+  ps-language: "<text>Language"
+  ps-language-lore:
+  - "<muted>Current: <text>%language%"
+  ps-messages: "<text>Messages"
+  ps-messages-lore:
+  - "<muted>Which chat messages you see"
+  ps-entry: "<text>Entry and exit"
+  ps-entry-lore:
+  - "<muted>Claim entry and exit alerts"
+  ps-invitations: "<text>Invitations"
+  ps-invitations-lore:
+  - "<muted>Allow owners to add you as a member"
+  ps-membership: "<text>Membership"
+  ps-membership-lore:
+  - "<muted>Claims you are a member of"
+  ps-reset: "<text>Reset"
+  ps-reset-lore:
+  - "<muted>Restore the defaults"
+  membership-claim: "<text>Claim %id% <muted>(%owner%)"
+  membership-claim-lore:
+  - "<muted>Chunks: <text>%chunks%"
+  - "<muted>World: <text>%world%"
+  - ""
+  - "<muted>Click to leave"
+  sound:
+    all: "<text>All sounds"
+    enter: "<text>Claim entry"
+    exit: "<text>Claim exit"
+    expansion: "<text>Expansion"
+    warning: "<text>Warnings"
+    gui: "<text>Menus"
+    success: "<text>Success"
+    error: "<text>Errors"
+  msg:
+    plugin: "<text>All plugin messages"
+    claim: "<text>Claim messages"
+    entry: "<text>Entry messages"
+    exit: "<text>Exit messages"
+    expansion: "<text>Expansion messages"
+    warning: "<text>Warnings"
+  entry:
+    owner: "<text>Owner alerts"
+    member: "<text>Member alerts"
+    leave: "<text>Alert when visitors leave"
+    position: "<text>Position"
+    position-title: "<muted>Shown as a title"
+    position-actionbar: "<muted>Shown in the action bar"

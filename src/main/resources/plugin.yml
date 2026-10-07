@@ -1,0 +1,33 @@
+name: Ultras_Claims_v1
+version: v1
+main: com.ultras.claims.UltrasClaims
+api-version: '1.21'
+author: UC_Hussein
+description: Chunk claims with heads, borders, expansion, members, cabin, map and per-player settings.
+softdepend: [Vault]
+commands:
+  claim:
+    description: Get a claim head or manage claims
+    usage: /claim [list|tp|info|wand|map]
+    permission: ultrasclaims.use
+  claim_setting:
+    description: Your personal claim settings
+    usage: /claim_setting
+    aliases: [claimsetting]
+    permission: ultrasclaims.use
+permissions:
+  ultrasclaims.use:
+    description: Use the claim system
+    default: true
+  ultrasclaims.admin:
+    description: Administrative commands (admin add/remove/reset/renew, reload)
+    default: op
+  ultrasclaims.admin.bypass:
+    description: Bypass claim protection and manage any claim
+    default: op
+  ultrasclaims.admin.list:
+    description: List every claim
+    default: op
+  ultrasclaims.admin.tp:
+    description: Teleport to any claim
+    default: op

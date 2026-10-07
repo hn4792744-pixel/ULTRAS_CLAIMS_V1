@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ultras'
+version = 'v1'
+
+repositories {
+    mavenCentral()
+    maven { url = uri('https://repo.papermc.io/repository/maven-public/') }
+}
+
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:${paperApi}"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.4'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = (project.findProperty('javaRelease') ?: '25') as Integer
+}
+
+processResources {
+    inputs.property('version', project.version)
+    filteringCharset = 'UTF-8'
+    filesMatching('plugin.yml') { expand(version: project.version) }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    archiveFileName = 'Ultras_Claims_v1.jar'
+}

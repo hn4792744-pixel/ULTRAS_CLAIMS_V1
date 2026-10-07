@@ -1,0 +1,11 @@
+# Slot positions (0-based) of the claim management menu. 3 rows = slots 0-26.
+main:
+  slots:
+    border: 10
+    members: 11
+    settings: 12
+    cabin: 13
+    map: 14
+    notifications: 15
+    info: 16
+    close: 22

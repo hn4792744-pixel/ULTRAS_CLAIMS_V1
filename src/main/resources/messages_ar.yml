@@ -1,0 +1,517 @@
+# Ultras_Claims_v1 - الرسائل العربية. المتغيّرات: %name%
+meta:
+  name: العربية
+  small-caps: false
+file-version: 1
+usage: "<prefix> <muted>• <text>الاستخدام: <accent>%usage%"
+no-permission: "<prefix> <error>× ليس لديك صلاحية"
+players-only: "<prefix> <error>× هذا الأمر للاعبين فقط"
+reloaded: "<prefix> <success>✓ تمت إعادة تحميل الإعدادات"
+player-offline: "<prefix> <error>× اللاعب %player% غير متصل"
+claim-not-found: "<prefix> <error>× لا يوجد كليم بالمعرّف %id%"
+claim-not-found-here: "<prefix> <error>× لا يوجد كليم هنا"
+claim-gone: "<prefix> <error>× هذا الكليم لم يعد موجوداً"
+claim-no-access: "<prefix> <error>× هذا الكليم يعود إلى %owner%"
+world-disabled: "<prefix> <error>× الكليم معطّل في هذا العالم"
+gui-no-permission: "<prefix> <error>× غير مسموح لك بذلك"
+gui-search-prompt: "<prefix> <muted>• <text>اكتب الاسم في الشات أو <accent>cancel"
+protect-denied: "<prefix> <error>× هذه الأرض محمية"
+head-given: "<prefix> <success>✓ تم استلام رأس الكليم <muted>(%count% / %max%)"
+head-given-admin: "<prefix> <success>✓ استلمت رأس كليم"
+head-cannot-obtain: "<prefix> <error>× لا يمكنك الحصول على رأس كليم"
+head-limit: "<prefix> <error>× لقد استلمت رؤوس الكليم المسموحة (%max%)"
+head-not-yours: "<prefix> <error>× رأس الكليم هذا يعود للاعب آخر"
+head-invalid: "<prefix> <error>× رأس الكليم هذا غير صالح"
+head-chunk-claimed: "<prefix> <error>× هذا التشنك مملوك بالفعل للاعب %owner%"
+head-limit-owned: "<prefix> <error>× يمكنك امتلاك %max% كليم فقط"
+head-break-denied: "<prefix> <error>× المالك فقط يستطيع كسر هذا الرأس"
+head-break-sneak: "<prefix> <warning>! اضغط Shift واكسر لإزالة رأس الكليم"
+head-broken: "<prefix> <success>✓ تمت إزالة الكليم %id%"
+claim-created: "<prefix> <success>✓ تم إنشاء الكليم <muted>(%id%)"
+border-shown: "<prefix> <muted>• <text>الحدود ظاهرة لمدة %seconds% ثانية"
+expand-success:
+- "<prefix> <success>✓ تم توسيع الكليم"
+- "<prefix> <muted>• <text>التقدم: %current% / %max%"
+expand-not-allowed: "<prefix> <error>× لا يمكنك توسيع هذا الكليم"
+expand-grace: "<prefix> <error>× جدّد الكليم قبل التوسيع"
+expand-max: "<prefix> <error>× وصلت لأقصى توسيع (%max%)"
+expand-chunk-claimed: "<prefix> <error>× هذا التشنك يعود إلى %owner%"
+expand-outside-border: "<prefix> <error>× هذا التشنك خارج حدود العالم"
+expand-busy: "<prefix> <error>× هناك عملية توسيع جارية"
+expand-refunded: "<prefix> <error>× أُلغي التوسيع وتم استرجاع المبلغ"
+economy-insufficient: "<prefix> <error>× الرصيد غير كافٍ"
+economy-unavailable: "<prefix> <error>× الاقتصاد غير متاح"
+member-added: "<prefix> <success>✓ تمت إضافة %player% <muted>(الحد %max%)"
+member-removed: "<prefix> <success>✓ تمت إزالة %player%"
+member-left: "<prefix> <success>✓ غادرت كليم %owner%"
+member-full: "<prefix> <error>× وصل هذا الكليم لأقصى عدد أعضاء"
+member-target-full: "<prefix> <error>× هذا اللاعب عضو في عدد كبير من الكليمات"
+member-invites-disabled: "<prefix> <error>× اللاعب عطّل دعوات الكليم"
+member-already: "<prefix> <error>× %player% عضو بالفعل"
+member-self: "<prefix> <error>× أنت المالك"
+member-owner: "<prefix> <error>× %player% هو المالك"
+member-unknown: "<prefix> <error>× لاعب غير معروف"
+member-you-were-added: "<prefix> <muted>• <text>تمت إضافتك إلى كليم %owner%"
+member-you-were-removed: "<prefix> <muted>• <text>تمت إزالتك من كليم %owner%"
+cabin-disabled: "<prefix> <error>× الكابين معطّل"
+cabin-not-accepted: "<prefix> <error>× هذا العنصر غير مقبول"
+cabin-deposited: "<prefix> <muted>• <text>تم إيداع %amount% × %item% <muted>(المعالجة بعد %delay% ثانية)"
+cabin-withdrawn: "<prefix> <muted>• <text>تم إرجاع %amount% × %item%"
+cabin-processed:
+- "<prefix> <success>✓ تمت زيادة الحماية بمقدار %time%"
+- "<prefix> <muted>• <text>المتبقي: %remaining%"
+cabin-nothing: "<prefix> <error>× العناصر لا تكفي لإضافة وقت"
+cabin-full: "<prefix> <error>× الكابين ممتلئ (الحد الأقصى %max%)"
+cabin-grace-owner-only: "<prefix> <error>× المالك السابق فقط يستطيع التجديد الآن"
+cabin-items-returned: "<prefix> <muted>• <text>تم إرجاع عناصر الكابين الخاصة بك"
+notify-cabin-warning: "<prefix> <warning>! حماية الكليم تنتهي خلال %time%"
+notify-cabin-empty: "<prefix> <warning>! الكابين فارغ"
+notify-cabin-renewed: "<prefix> <success>✓ تم تجديد الحماية <muted>(%time%)"
+notify-claim-expired: "<prefix> <warning>! انتهى الكليم %id% - جدّده خلال %minutes% دقيقة"
+notify-claim-renewed: "<prefix> <success>✓ تم تجديد الكليم"
+notify-head-expired: "<prefix> <warning>! تمت إزالة الكليم %id%"
+notify-head-broken: "<prefix> <warning>! %player% كسر رأس الكليم %id%"
+notify-expanded: "<prefix> <success>✓ %player% وسّع الكليم <muted>(%current% / %max%)"
+notify-member-joined: "<prefix> <muted>• <text>انضم %player% إلى الكليم"
+notify-member-left: "<prefix> <muted>• <text>غادر %player% الكليم"
+notify-visitor-entered: "<prefix> <muted>• <text>%player% دخل كليمك"
+notify-visitor-left: "<prefix> <muted>• <text>%player% غادر كليمك"
+entry-own: "<muted>كليمك <text>%id%"
+entry-member: "<muted>كليم <text>%owner%"
+entry-visitor: "<muted>كليم <text>%owner%"
+entry-grace: "<warning>كليمك يحتاج تجديداً"
+exit: "<muted>مغادرة الكليم"
+list-empty: "<prefix> <muted>• <text>ليس لديك كليمات"
+list-header: "<prefix> <muted>• <text>الكليمات <muted>(%count%)"
+list-more: "<prefix> <muted>• <text>... و%count% أخرى"
+list-entry: "<muted>  %id% <text>%owner% <muted>· %chunks% تشنك · %world% %x% %y% %z% · %time%"
+info-lines:
+- "<prefix> <muted>• <text>الكليم <accent>%id%"
+- "<muted>  المالك <text>%owner% <muted>· %state%"
+- "<muted>  التشنكات <text>%chunks% <muted>· التوسيع <text>%expansions%/%max%"
+- "<muted>  الأعضاء <text>%members%/%maxmembers% <muted>· الحماية <text>%time%"
+info-visitor: "<prefix> <muted>• <text>هذا الكليم يعود إلى %owner%"
+tp-denied: "<prefix> <error>× لا يمكنك الانتقال إلى هذا الكليم"
+tp-done: "<prefix> <success>✓ تم الانتقال إلى الكليم %id%"
+wand-given: "<prefix> <success>✓ استلمت عصا الكليم"
+wand-none: "<prefix> <muted>• <text>لا توجد كليمات قريبة"
+wand-shown: "<prefix> <muted>• <text>عرض %count% كليم قريب"
+map-given: "<prefix> <success>✓ استلمت خريطة الكليم"
+map-enemy-claim: "<prefix> <muted>• <text>هذا التشنك يعود إلى %owner%"
+admin-head-given: "<prefix> <success>✓ تم إعطاء رأس كليم إلى %player%"
+admin-removed: "<prefix> <success>✓ تمت إزالة الكليم %id%"
+admin-reset: "<prefix> <success>✓ تمت إعادة ضبط رؤوس %player%"
+settings-reset: "<prefix> <success>✓ تمت إعادة ضبط إعداداتك"
+item-head-name: "<accent>رأس الكليم"
+item-head-lore:
+- "<muted>المالك: <text>%owner%"
+- "<muted>ضعه لحماية التشنك"
+item-wand-name: "<accent>عصا الكليم"
+item-wand-lore:
+- "<muted>كليك يمين لعرض الحدود القريبة"
+item-map-name: "<accent>خريطة الكليم"
+item-map-lore:
+- "<muted>تعرض الكليمات حولك"
+- "<muted>Shift + كليك يمين للقائمة"
+hologram:
+- "<accent>%owner%"
+- "<muted>%time%"
+hologram-grace:
+- "<warning>%owner%"
+- "<warning>يحتاج تجديداً"
+gui:
+  border: "<text>الحدود"
+  border-lore:
+  - "<muted>عرض حدود الكليم"
+  - "<muted>اضغط + للتوسيع"
+  members: "<text>الأعضاء"
+  members-lore:
+  - "<muted>إدارة من يستخدم الكليم"
+  settings: "<text>الإعدادات"
+  settings-lore:
+  - "<muted>حماية الزوار"
+  cabin: "<text>الكابين"
+  cabin-lore:
+  - "<muted>إضافة وقت للحماية"
+  cabin-disabled: "<text>الكابين"
+  cabin-disabled-lore:
+  - "<muted>معطّل في هذا السيرفر"
+  map: "<text>الخريطة"
+  map-lore:
+  - "<muted>شاهد التشنكات حولك"
+  notifications: "<text>الإشعارات"
+  notifications-lore:
+  - "<muted>اختر ما يصلك"
+  info: "<text>المعلومات"
+  info-lore:
+  - "<muted>المالك: <text>%owner%"
+  - "<muted>الاسم: <text>%name%"
+  - "<muted>التشنكات: <text>%chunks%"
+  - "<muted>التوسيع: <text>%expansions% / %max%"
+  - "<muted>الأعضاء: <text>%members% / %maxmembers%"
+  - "<muted>الحالة: <text>%state%"
+  - "<muted>الحماية: <text>%remaining%"
+  - ""
+  - "<muted>الإنشاء: <text>%created%"
+  - "<muted>آخر تجديد: <text>%renewed%"
+  - "<muted>الرأس: <text>%world% %x% %y% %z%"
+  close: "<text>إغلاق"
+  back: "<text>رجوع"
+  confirm: "<text>تأكيد"
+  cancel: "<text>إلغاء"
+  next: "<text>التالي"
+  previous: "<text>السابق"
+  add-member: "<text>إضافة عضو"
+  add-member-lore:
+  - "<muted>اختر لاعباً"
+  renew: "<text>تجديد"
+  renew-lore:
+  - "<muted>للإدارة: إضافة %time%"
+  page: "<muted>صفحة <text>%page% <muted>/ <text>%pages%"
+  search: "<text>بحث"
+  search-lore:
+  - "<muted>الحالي: <text>%query%"
+  - "<muted>اضغط للكتابة، كليك يمين للمسح"
+  filter: "<text>فلتر"
+  filter-lore:
+  - "<muted>العرض: <text>%filter%"
+  - "<muted>اضغط للفلتر التالي"
+  empty: "<muted>لا يوجد شيء"
+  up: "<text>فوق"
+  down: "<text>تحت"
+  left: "<text>السابق"
+  right: "<text>التالي"
+  center: "<text>المنتصف"
+  zoom-in: "<text>تقريب"
+  zoom-out: "<text>تبعيد"
+  zoom-in-lore:
+  - "<muted>%zoom% تشنك لكل خانة"
+  zoom-out-lore:
+  - "<muted>%zoom% تشنك لكل خانة"
+  expand-here: "<text>وسّع هنا"
+  expand-here-lore:
+  - "<muted>التشنك %x%, %z%"
+  expand-unavailable: "<muted>لا يمكن التوسيع هنا"
+  expand-unavailable-lore:
+  - "<muted>اختر تشنك فارغ بجانب كليمك"
+  title-claim: "<muted>كليم <text>%id%"
+  title-info: "<muted>معلومات <text>%id%"
+  title-members: "<muted>الأعضاء <text>%count%/%max%"
+  title-picker: "<muted>إضافة عضو"
+  title-permissions: "<muted>صلاحيات <text>%player%"
+  title-settings: "<muted>إعدادات <text>%id%"
+  title-chunk-settings: "<muted>تشنك <text>%chunk%"
+  title-notifications: "<muted>الإشعارات"
+  title-cabin: "<muted>الكابين <text>%id%"
+  title-map: "<muted>الخريطة <text>%x%, %z%"
+  title-confirm-expand: "<muted>تأكيد التوسيع"
+  title-remove-member: "<muted>إزالة %player%"
+  title-player-settings: "<muted>إعداداتك"
+  title-sounds: "<muted>الأصوات"
+  title-messages: "<muted>الرسائل"
+  title-entry: "<muted>الدخول والخروج"
+  title-language: "<muted>اللغة"
+  title-membership: "<muted>العضوية <text>%count%/%max%"
+  title-leave: "<muted>مغادرة الكليم %id%"
+  title-reset: "<muted>إعادة ضبط الإعدادات"
+  state-on: "<enabled>● مفعّل"
+  state-off: "<disabled>● معطّل"
+  state-selected: "<enabled>محدد"
+  sensitive: "<warning>صلاحية حساسة"
+  click-to-toggle: "<muted>اضغط للتبديل"
+  click-to-change: "<muted>اضغط للتغيير"
+  click-to-select: "<muted>اضغط للاختيار"
+  online: متصل
+  offline: غير متصل
+  claim-state-active: فعّال
+  claim-state-grace: فترة سماح
+  flag-blocked: "<enabled>الزوار ممنوعون"
+  flag-allowed: "<disabled>الزوار مسموحون"
+  info-name: "<text>الكليم %id%"
+  member-lore:
+  - "<muted>الحالة: <text>%status%"
+  - "<muted>الصلاحيات: <text>%permissions%"
+  - "<muted>منذ: <text>%since%"
+  - ""
+  - "<muted>كليك: الصلاحيات"
+  - "<muted>كليك يمين: إزالة"
+  picker-lore:
+  - "<muted>الحالة: <text>%status%"
+  - ""
+  - "<muted>اضغط للإضافة"
+  remove-member-lore:
+  - "<muted>%player% سيفقد الوصول"
+  leave-lore:
+  - "<muted>ستفقد الوصول إلى كليم %owner%"
+  reset-lore:
+  - "<muted>ترجع كل إعداداتك الشخصية للافتراضي"
+  confirm-expand-lore:
+  - "<muted>التشنك %x%, %z%"
+  - "<muted>التوسيع: <text>%current% / %max%"
+  cabin-info: "<text>الكابين"
+  cabin-info-lore:
+  - "<muted>المتبقي: <text>%remaining%"
+  - "<muted>الحد الأقصى: <text>%max%"
+  - "<muted>الحالة: <text>%state%"
+  - ""
+  - "<muted>العناصر المقبولة:"
+  cabin-rule: "<muted>  %item% <text>×%minimum% <muted>← <text>+%time%"
+  cabin-more: "<muted>  ... و%count% أخرى"
+  cabin-deposit: "<text>%item% ×%amount%"
+  cabin-deposit-lore:
+  - "<muted>اضغط للاسترجاع"
+  cabin-empty: "<text>لا يوجد إيداع"
+  cabin-empty-lore:
+  - "<muted>اضغط على عنصر مقبول في حقيبتك"
+  - "<muted>لتسليمه"
+  cabin-time: "<text>المتبقي: %remaining%"
+  cabin-time-lore:
+  - "<muted>تتم معالجة العناصر بعد مهلة قصيرة"
+  map-own-head: "<enabled>رأس كليمك"
+  map-own: "<enabled>كليمك"
+  map-member: "<info>كليم عضوية"
+  map-enemy: "<disabled>مملوك"
+  map-free: "<muted>حر"
+  map-here: " <text>◆ أنت هنا"
+  map-coords: "<muted>التشنك %x%, %z%"
+  map-owner: "<muted>المالك: <text>%owner% <muted>(%id%)"
+  map-click-settings: "<muted>اضغط لإعدادات التشنك"
+  map-click-select: "<muted>اضغط للاختيار"
+  map-click-zoom: "<muted>اضغط للتقريب"
+  filter-name:
+    all: الكل
+    online: المتصلون
+    offline: غير المتصلين
+    combat: القتال
+    building: البناء
+    containers: الحاويات
+    redstone: الريدستون
+    entities: الكائنات
+    world: العالم
+  perm:
+    use-claim: "<text>استخدام الكليم"
+    use-claim-lore:
+    - "<muted>فتح الكابين وميزات الكليم"
+    build: "<text>البناء"
+    build-lore:
+    - "<muted>وضع البلوكات"
+    break: "<text>الكسر"
+    break-lore:
+    - "<muted>كسر البلوكات"
+    containers: "<text>الحاويات"
+    containers-lore:
+    - "<muted>الشستات والبراميل والأفران والهوبرات"
+    doors: "<text>الأبواب"
+    doors-lore:
+    - "<muted>الأبواب والبوابات"
+    buttons: "<text>الأزرار"
+    buttons-lore:
+    - "<muted>استخدام الأزرار"
+    levers: "<text>الليفرات"
+    levers-lore:
+    - "<muted>استخدام الليفرات"
+    redstone: "<text>الريدستون"
+    redstone-lore:
+    - "<muted>الضغاطات والريبيترات"
+    animals: "<text>الحيوانات"
+    animals-lore:
+    - "<muted>الحيوانات والمخلوقات"
+    villagers: "<text>القرويون"
+    villagers-lore:
+    - "<muted>التجارة والتفاعل"
+    pickup: "<text>الالتقاط"
+    pickup-lore:
+    - "<muted>التقاط العناصر"
+    drop: "<text>الرمي"
+    drop-lore:
+    - "<muted>رمي العناصر"
+    teleport: "<text>الانتقال"
+    teleport-lore:
+    - "<muted>الانتقال إلى الكليم وداخله"
+    expand: "<text>التوسيع"
+    expand-lore:
+    - "<muted>توسيع الكليم"
+    manage-members: "<text>إدارة الأعضاء"
+    manage-members-lore:
+    - "<muted>إضافة الأعضاء وإزالتهم"
+    break-head: "<text>كسر الرأس"
+    break-head-lore:
+    - "<muted>إزالة رأس الكليم"
+  notif:
+    cabin-warning: "<text>تحذير الكابين"
+    cabin-warning-lore:
+    - "<muted>الحماية على وشك الانتهاء"
+    cabin-empty: "<text>الكابين فارغ"
+    cabin-empty-lore:
+    - "<muted>انتهى وقت الحماية"
+    cabin-renewed: "<text>تجديد الكابين"
+    cabin-renewed-lore:
+    - "<muted>تمت إضافة وقت"
+    member-joined: "<text>انضمام عضو"
+    member-joined-lore:
+    - "<muted>تمت إضافة شخص"
+    member-left: "<text>مغادرة عضو"
+    member-left-lore:
+    - "<muted>تمت إزالة شخص أو غادر"
+    claim-expanded: "<text>توسيع الكليم"
+    claim-expanded-lore:
+    - "<muted>تمت إضافة تشنك"
+    claim-expired: "<text>انتهاء الكليم"
+    claim-expired-lore:
+    - "<muted>بدأت فترة السماح"
+    claim-renewed: "<text>تجديد الكليم"
+    claim-renewed-lore:
+    - "<muted>تم التجديد بعد الانتهاء"
+    head-broken: "<text>كسر الرأس"
+    head-broken-lore:
+    - "<muted>تمت إزالة الرأس"
+    visitor-entered: "<text>دخول زائر"
+    visitor-entered-lore:
+    - "<muted>شخص دخل الكليم"
+    visitor-left: "<text>خروج زائر"
+    visitor-left-lore:
+    - "<muted>شخص غادر الكليم"
+  flag:
+    pvp: "<text>القتال PvP"
+    pvp-lore:
+    - "<muted>قتال اللاعبين"
+    block-break: "<text>كسر البلوكات"
+    block-break-lore:
+    - "<muted>كسر البلوكات"
+    block-place: "<text>وضع البلوكات"
+    block-place-lore:
+    - "<muted>وضع البلوكات"
+    bucket: "<text>الدلاء"
+    bucket-lore:
+    - "<muted>استخدام الدلاء"
+    container: "<text>الحاويات"
+    container-lore:
+    - "<muted>الأفران والشلكرات وغيرها"
+    chest: "<text>الشستات"
+    chest-lore:
+    - "<muted>فتح الشستات"
+    barrel: "<text>البراميل"
+    barrel-lore:
+    - "<muted>فتح البراميل"
+    hopper: "<text>الهوبرات"
+    hopper-lore:
+    - "<muted>الهوبرات ونقل العناصر عبر الحدود"
+    door: "<text>الأبواب"
+    door-lore:
+    - "<muted>استخدام الأبواب"
+    trapdoor: "<text>الأبواب الأرضية"
+    trapdoor-lore:
+    - "<muted>استخدام الترابدور"
+    fence-gate: "<text>بوابات السياج"
+    fence-gate-lore:
+    - "<muted>استخدام البوابات"
+    button: "<text>الأزرار"
+    button-lore:
+    - "<muted>استخدام الأزرار"
+    lever: "<text>الليفرات"
+    lever-lore:
+    - "<muted>استخدام الليفرات"
+    redstone: "<text>الريدستون"
+    redstone-lore:
+    - "<muted>الضغاطات والريبيترات وما شابه"
+    pistons: "<text>البستونات"
+    pistons-lore:
+    - "<muted>دفع البستونات عبر الحدود"
+    item-pickup: "<text>التقاط العناصر"
+    item-pickup-lore:
+    - "<muted>التقاط العناصر"
+    item-drop: "<text>رمي العناصر"
+    item-drop-lore:
+    - "<muted>رمي العناصر"
+    mob-damage: "<text>أذى المخلوقات"
+    mob-damage-lore:
+    - "<muted>ضرب المخلوقات"
+    animal-damage: "<text>أذى الحيوانات"
+    animal-damage-lore:
+    - "<muted>ضرب الحيوانات"
+    villager-interaction: "<text>القرويون"
+    villager-interaction-lore:
+    - "<muted>التجارة وضرب القرويين"
+    vehicle: "<text>المركبات"
+    vehicle-lore:
+    - "<muted>القوارب والعربات"
+    fishing: "<text>الصيد"
+    fishing-lore:
+    - "<muted>رمي صنارة الصيد"
+    fire: "<text>النار"
+    fire-lore:
+    - "<muted>النار والإشعال"
+    lava: "<text>اللافا"
+    lava-lore:
+    - "<muted>تدفق اللافا للداخل"
+    water: "<text>الماء"
+    water-lore:
+    - "<muted>تدفق الماء للداخل"
+    explosions: "<text>الانفجارات"
+    explosions-lore:
+    - "<muted>كل الانفجارات"
+    tnt: "<text>TNT"
+    tnt-lore:
+    - "<muted>التي إن تي والعربات المتفجرة"
+    creeper: "<text>الكريبر"
+    creeper-lore:
+    - "<muted>انفجار الكريبر"
+    enderman-grief: "<text>تخريب الإندرمان"
+    enderman-grief-lore:
+    - "<muted>الإندرمان ينقل البلوكات"
+    crop-trample: "<text>دوس المحاصيل"
+    crop-trample-lore:
+    - "<muted>دوس الأرض الزراعية"
+  ps-notifications: "<text>إشعارات الكليم"
+  ps-notifications-lore:
+  - "<muted>استقبال إشعارات كليماتك"
+  ps-sounds: "<text>الأصوات"
+  ps-sounds-lore:
+  - "<muted>الأصوات التي تسمعها"
+  ps-language: "<text>اللغة"
+  ps-language-lore:
+  - "<muted>الحالية: <text>%language%"
+  ps-messages: "<text>الرسائل"
+  ps-messages-lore:
+  - "<muted>رسائل الشات التي تظهر لك"
+  ps-entry: "<text>الدخول والخروج"
+  ps-entry-lore:
+  - "<muted>تنبيهات دخول وخروج الكليم"
+  ps-invitations: "<text>الدعوات"
+  ps-invitations-lore:
+  - "<muted>السماح للملاك بإضافتك كعضو"
+  ps-membership: "<text>العضوية"
+  ps-membership-lore:
+  - "<muted>الكليمات التي أنت عضو فيها"
+  ps-reset: "<text>إعادة ضبط"
+  ps-reset-lore:
+  - "<muted>استرجاع الإعدادات الافتراضية"
+  membership-claim: "<text>الكليم %id% <muted>(%owner%)"
+  membership-claim-lore:
+  - "<muted>التشنكات: <text>%chunks%"
+  - "<muted>العالم: <text>%world%"
+  - ""
+  - "<muted>اضغط للمغادرة"
+  sound:
+    all: "<text>كل الأصوات"
+    enter: "<text>دخول الكليم"
+    exit: "<text>خروج الكليم"
+    expansion: "<text>التوسيع"
+    warning: "<text>التحذيرات"
+    gui: "<text>القوائم"
+    success: "<text>النجاح"
+    error: "<text>الأخطاء"
+  msg:
+    plugin: "<text>كل رسائل البلوكن"
+    claim: "<text>رسائل الكليم"
+    entry: "<text>رسائل الدخول"
+    exit: "<text>رسائل الخروج"
+    expansion: "<text>رسائل التوسيع"
+    warning: "<text>التحذيرات"
+  entry:
+    owner: "<text>تنبيهات المالك"
+    member: "<text>تنبيهات الأعضاء"
+    leave: "<text>تنبيه عند مغادرة الزوار"
+    position: "<text>المكان"
+    position-title: "<muted>يظهر كعنوان"
+    position-actionbar: "<muted>يظهر في الأكشن بار"
